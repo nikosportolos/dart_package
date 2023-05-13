@@ -1,5 +1,5 @@
 name: dart-package
-description: This is an action to validate and publish a Dart package to pub.dev.
+description: "This is an action to validate and publish a Dart package to pub.dev."
 author: Nikos Portolos
 branding:
   icon: "activity"
@@ -7,53 +7,53 @@ branding:
 
 inputs:
   working_directory:
+    description: "Specify the working directory."
     required: false
-    type: string
     default: "."
   dart_sdk:
+    description: "Specify the Dart SDK version."
     required: false
-    type: string
     default: "2.19.6"
   analyze_directories:
+    description: "Specify the directories to run dart analyze."
     required: false
-    type: string
     default: "lib test"
   line_length:
-    description: The line length to use with dart format.
+    description: "The line length to use with dart format."
     required: false
-    type: number
-    default: 120
+    default: "120"
   concurrency:
+    description: "Controls the number of test suites that runs concurrently, meaning that multiple tests in independent suites or platforms can run at the same time."
     required: false
-    type: number
-    default: 4
+    default: "4"
+  skip_tests:
+    description: "Flag that defines whether to skip tests."
+    required: false
+    default: "false"
   coverage:
-    type: boolean
+    description: "Flag that defines whether to run tests with coverage."
     required: false
-    default: false
+    default: "false"
   codecov:
-    type: boolean
+    description: "Flag that defines whether to upload coverage reports to Codecov. Requires the codecov_token."
     required: false
-    default: false
+    default: "false"
   codecov_token:
-    description: The token that will be used to upload coverage reports to Codecov.
-    type: string
+    description: "The token that will be used to upload coverage reports to Codecov. Requires the codecov flag to be set to true."
     required: false
     default: ""
   publish:
-    type: boolean
+    description: "Flag that defines whether to publish the Dart package on pub.dev."
     required: false
-    default: false
+    default: "false"
   pubdev_token:
-    description: The token that will be used to publish the dart package to pub.dev.
-    type: string
+    description: "The token that will be used to publish the dart package to pub.dev."
     required: false
     default: ""
   pana_threshold:
-    description: The exit code will indicate if (max - granted points) <= threshold.
-    type: number
+    description: "The exit code will indicate if (max - granted points) <= threshold."
     required: false
-    default: 19
+    default: "19"
 
 runs:
   using: "composite"
@@ -67,19 +67,24 @@ runs:
         sdk: ${{ inputs.dart_sdk }}
 
     - name: 📦 Install Dependencies
+      shell: bash
       run: dart pub get
 
     - name: 🎨 Check Formatting
+      shell: bash
       run: dart format --output none --set-exit-if-changed -l ${{ inputs.line_length }} ${{ inputs.working_directory }}
 
     - name: 🕵️ Analyze
+      shell: bash
       run: dart analyze --fatal-infos --fatal-warnings ${{ inputs.analyze_directories }}
 
     - name: 🧪 Run Tests
-      if: ${{ !inputs.coverage }}
+      shell: bash
+      if: ${{ !inputs.skip_tests && !inputs.coverage }}
       run: dart test -j ${{ inputs.concurrency }} --color
 
     - name: 🧾 Generate code coverage
+      shell: bash
       if: ${{ inputs.coverage }}
       run: |
         dart pub global activate coverage
@@ -94,6 +99,7 @@ runs:
         fail_ci_if_error: true
 
     - name: 🚀 Publish on pub.dev
+      shell: bash
       if: ${{ inputs.publish }}
       run: |
         dart pub global activate pana

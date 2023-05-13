@@ -1,15 +1,18 @@
 # Dart Package
-### This is an action to validate and publish a Dart package to pub.dev.
-
-## Usage
-
+#### This is an action to validate and publish a Dart package to pub.dev.
 
 ## Setup
+
+
+
+
+## Inputs
 
 
 ## Examples
 
 ### Pull-request workflow:
+
 ```yaml
 # .github/workflows/pr.yml 
 name: PR Workflow
@@ -58,6 +61,7 @@ jobs:
 
 
 ### Publish workflow:
+
 ```yaml
 # .github/workflows/publish.yml 
 name: Publish Workflow
