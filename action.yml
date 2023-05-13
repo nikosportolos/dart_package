@@ -2,8 +2,8 @@ name: dart-package
 description: This is an action to validate and publish a Dart package to pub.dev.
 author: Nikos Portolos
 branding:
-  icon: "check"
-  color: "white"
+  icon: "activity"
+  color: "blue"
 
 inputs:
   working_directory:
