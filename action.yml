@@ -103,6 +103,8 @@ runs:
       if: ${{ inputs.publish }}
       run: |
         dart pub global activate pana
+        dart pub publish --dry-run
         pana --line-length ${{ inputs.line_length }} --exit-code-threshold ${{ inputs.pana_threshold }} ${{ inputs.working_directory }}
         mkdir -p ~/.config/dart
         echo "${{inputs.pubdev_token}}" | base64 --decode >> ~/.config/dart/pub-credentials.json
+        dart pub publish --force
