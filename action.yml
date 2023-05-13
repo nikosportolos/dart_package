@@ -1,0 +1,102 @@
+name: dart-package
+description: This is an action to validate and publish a Dart package to pub.dev.
+author: Nikos Portolos
+branding:
+  icon: "check"
+  color: "white"
+
+inputs:
+  working_directory:
+    required: false
+    type: string
+    default: "."
+  dart_sdk:
+    required: false
+    type: string
+    default: "2.19.6"
+  analyze_directories:
+    required: false
+    type: string
+    default: "lib test"
+  line_length:
+    description: The line length to use with dart format.
+    required: false
+    type: number
+    default: 120
+  concurrency:
+    required: false
+    type: number
+    default: 4
+  coverage:
+    type: boolean
+    required: false
+    default: false
+  codecov:
+    type: boolean
+    required: false
+    default: false
+  codecov_token:
+    description: The token that will be used to upload coverage reports to Codecov.
+    type: string
+    required: false
+    default: ""
+  publish:
+    type: boolean
+    required: false
+    default: false
+  pubdev_token:
+    description: The token that will be used to publish the dart package to pub.dev.
+    type: string
+    required: false
+    default: ""
+  pana_threshold:
+    description: The exit code will indicate if (max - granted points) <= threshold.
+    type: number
+    required: false
+    default: 19
+
+runs:
+  using: "composite"
+  steps:
+    - name: 📑 Git Checkout
+      uses: actions/checkout@v3
+
+    - name: 🎯 Setup Dart
+      uses: dart-lang/setup-dart@v1.4
+      with:
+        sdk: ${{ inputs.dart_sdk }}
+
+    - name: 📦 Install Dependencies
+      run: dart pub get
+
+    - name: 🎨 Check Formatting
+      run: dart format --output none --set-exit-if-changed -l ${{ inputs.line_length }} ${{ inputs.working_directory }}
+
+    - name: 🕵️ Analyze
+      run: dart analyze --fatal-infos --fatal-warnings ${{ inputs.analyze_directories }}
+
+    - name: 🧪 Run Tests
+      if: ${{ !inputs.coverage }}
+      run: dart test -j ${{ inputs.concurrency }} --color
+
+    - name: 🧾 Generate code coverage
+      if: ${{ inputs.coverage }}
+      run: |
+        dart pub global activate coverage
+        dart pub global run coverage:test_with_coverage
+
+    - name: ☂ Upload coverage report to Codecov
+      if: ${{ inputs.coverage && inputs.codecov }}
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ inputs.codecov_token }}
+        files: coverage/lcov.info
+        fail_ci_if_error: true
+
+    - name: 🚀 Publish on pub.dev
+      if: ${{ inputs.publish }}
+      run: |
+        dart pub global activate pana
+        pana --line-length ${{ inputs.line_length }} --exit-code-threshold ${{ inputs.pana_threshold }} ${{ inputs.working_directory }}
+        mkdir -p ~/.config/dart
+        echo "${{inputs.pubdev_token}}" | base64 --decode >> ~/.config/dart/pub-credentials.json
