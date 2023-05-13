@@ -1,74 +1,146 @@
 # Dart Package
 
-#### This is an action to validate and publish a Dart package to pub.dev.
+#### This is a GitHub Action to validate and publish a Dart package to [pub.dev](https://pub.dev/).
+
+## Table of contents
+
+- [Inputs](#inputs)
+  - [working_directory](#working-directory)
+  - [dart_sdk](#dart-sdk)
+  - [analyze_directories](#analyze_directories)
+  - [line_length](#line_length)
+  - [concurrency](#concurrency)
+  - [skip_tests](#skip_tests)
+  - [coverage](#coverage)
+  - [codecov](#codecov)
+  - [codecov_token](#codecov_token)
+  - [publish](#publish)
+  - [pubdev_token](#pubdev_token)
+  - [pana_threshold](#pana_threshold)
+- [Examples](#examples)
+  - [Pull-request workflow](#pull-request-workflow)
+  - [Merge workflow](#merge-workflow)
+  - [Publish workflow](#publish-workflow)
+
 
 ## Inputs
 
-```yaml
-working_directory:
-  description: "Specify the working directory."
-  required: false
-  default: "."
+- ### working_directory
 
-dart_sdk:
-  description: "Specify the Dart SDK version."
-  required: false
-  default: "2.19.6"
+Specify the working directory where the workflow will run.
 
-analyze_directories:
-  description: "Specify the directories to run dart analyze."
-  required: false
-  default: "lib test"
+|Required|Default|
+|--------|-------|
+|false   | "."   |
 
-line_length:
-  description: "The line length to use with dart format."
-  required: false
-  default: "120"
 
-concurrency:
-  description: "Controls the number of test suites that runs concurrently, meaning that multiple tests in independent suites or platforms can run at the same time."
-  required: false
-  default: "4"
+- ### dart_sdk
 
-skip_tests:
-  description: "Flag that defines whether to skip tests."
-  required: false
-  default: "false"
+Specify the Dart SDK version that will be used.
 
-coverage:
-  description: "Flag that defines whether to run tests with coverage."
-  required: false
-  default: "false"
+|Required| Default  |
+|--------|----------|
+|false   | "2.19.6" |
 
-codecov:
-  description: "Flag that defines whether to upload coverage reports to Codecov. Requires the codecov_token."
-  required: false
-  default: "false"
 
-codecov_token:
-  description: "The token that will be used to upload coverage reports to Codecov. Requires the codecov flag to be set to true."
-  required: false
-  default: ""
+- ### analyze_directories
 
-publish:
-  description: "Flag that defines whether to publish the Dart package on pub.dev."
-  required: false
-  default: "false"
+Specify the directories where dart analyze will run.
 
-pubdev_token:
-  description: "The token that will be used to publish the dart package to pub.dev."
-  required: false
-  default: ""
+|Required| Default    |
+|--------|------------|
+|false   | "lib test" |
+
   
-pana_threshold:
-  description: "The exit code will indicate if (max - granted points) <= threshold."
-  required: false
-  default: "19"
-```
+- ### line_length
+
+The line length to use with dart format.
+
+|Required| Default |
+|--------|---------|
+|false   | "120"   |
+
+  
+- ### concurrency
+
+Controls the number of test suites that runs concurrently, 
+meaning that multiple tests in independent suites or platforms can run at the same time.
+
+|Required| Default |
+|--------|---------|
+|false   | "4"     |
+
+  
+- ### skip_tests
+
+Flag that defines whether to skip tests.
+
+|Required| Default |
+|--------|---------|
+|false   | "false" |
+
+  
+- ### coverage
+
+Flag that defines whether to run tests with coverage.
+
+|Required| Default |
+|--------|---------|
+|false   | "false" |
+
+ 
+- ### codecov
+
+Flag that defines whether to upload coverage reports to [Codecov](https://about.codecov.io/). 
+
+Requires the [codecov_token](#codecov_token).
+
+|Required| Default |
+|--------|---------|
+|false   | "false" |
+
+  
+- ### codecov_token
+
+The token that will be used to upload coverage reports to [Codecov](https://about.codecov.io/). 
+
+Requires the [codecov](#codecov) flag to be set to true. 
+
+|Required| Default |
+|--------|---------|
+|false   | ""      |
+
+   
+- ### publish
+
+Flag that defines whether to publish the Dart package on pub.dev. 
+
+|Required| Default |
+|--------|---------|
+|false   | "false" |
+
+
+- ### pubdev_token
+
+The token that will be used to publish the Dart package to pub.dev. 
+
+|Required| Default |
+|--------|---------|
+|false   | ""      |
+
+   
+- ### pana_threshold
+
+The exit code will indicate if (max - granted points) <= threshold. 
+
+|Required| Default |
+|--------|---------|
+|false   | "19"    |
+
 
 ## Examples
 
-### Pull-request workflow:
+- ### Pull-request workflow
 
 ```yaml
 # .github/workflows/pr.yml 
@@ -92,7 +164,7 @@ jobs:
 ```
 
 
-### Merge workflow:
+- ### Merge workflow
 
 ```yaml
 # .github/workflows/merge.yml 
@@ -119,7 +191,7 @@ jobs:
 ```
 
 
-### Publish workflow:
+- ### Publish workflow
 
 ```yaml
 # .github/workflows/publish.yml 
