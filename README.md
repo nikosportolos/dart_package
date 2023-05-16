@@ -25,6 +25,8 @@
   - [Pull-request workflow](#pull-request-workflow)
   - [Merge workflow](#merge-workflow)
   - [Publish workflow](#publish-workflow)
+- [Changelog](#changelog)
+- [Contribution](#contribution)
 
 
 ## Setup
@@ -222,11 +224,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - name: 📚 Git Checkout
-        uses: actions/checkout@v3
-
-      - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.3
+      - uses: actions/checkout@v3
+      - uses: nikosportolos/dart_package@v0.0.3
 ```
 
 
@@ -254,11 +253,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - name: 📚 Git Checkout
-        uses: actions/checkout@v3
-
-      - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.3
+      - uses: actions/checkout@v3
+      - uses: nikosportolos/dart_package@v0.0.3
         with:
           coverage: true
           codecov: true
@@ -289,11 +285,9 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - name: 📚 Git Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.3
+      - uses: nikosportolos/dart_package@v0.0.3
         with:
           coverage: true
           codecov: true
@@ -301,3 +295,13 @@ jobs:
           publish: true
           pubdev_token: ${{ secrets.PUBDEV_TOKEN }}
 ```
+
+## Changelog
+
+Check the [changelog](https://github.com/nikosportolos/dart_package/tree/main/CHANGELOG.md)
+to learn what's new in **dart_package**.
+
+## Contribution
+
+Check the [contribution guide](https://github.com/nikosportolos/dart_package/tree/main/CONTRIBUTING.md) 
+if you want to help with **dart_package**.
