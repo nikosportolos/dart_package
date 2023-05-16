@@ -82,6 +82,14 @@ You can find it depending on your OS in the following directories:
 Read more: https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
 
 
+> **Notice** that the `pub-credentials.json` needs to be encoded to a base64 string
+> before adding it to your repo secrets.
+> 
+> You can easily encode it using the following command:
+> 
+> `base64 ./pub-credentials.json > output.txt`
+
+
 ## Inputs
 
 - ### working_directory
