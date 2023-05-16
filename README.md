@@ -226,7 +226,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.2
+        uses: nikosportolos/dart_package@v0.0.3
 ```
 
 
@@ -258,7 +258,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.2
+        uses: nikosportolos/dart_package@v0.0.3
         with:
           coverage: true
           codecov: true
@@ -293,7 +293,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.2
+        uses: nikosportolos/dart_package@v0.0.3
         with:
           coverage: true
           codecov: true
