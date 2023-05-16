@@ -1,0 +1,21 @@
+name: Publish Workflow
+description: This workflow runs when publishing a Dart package on pub.dev.
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: nikosportolos/dart-package@v1
+    with:
+      coverage: true
+      codecov: true
+      codecov_token: ${{ secrets.CODECOV_TOKEN }}
+      publish: true
+      pubdev_token: ${{ secrets.PUBDEV_TOKEN }}

@@ -1,0 +1,20 @@
+name: Merge Workflow
+description: This workflow runs when merging a PR to the main branch.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: nikosportolos/dart-package@v1
+    with:
+      coverage: true
+      codecov: true
+      codecov_token: ${{ secrets.CODECOV_TOKEN }}

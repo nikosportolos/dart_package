@@ -1,0 +1,17 @@
+name: PR Workflow
+description: This workflow runs on every pull-request to ensure dart package quality.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: nikosportolos/dart-package@v1
+    with:
+      coverage: false
