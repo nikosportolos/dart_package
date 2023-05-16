@@ -1,5 +1,4 @@
 name: Merge Workflow
-description: This workflow runs when merging a PR to the main branch.
 
 on:
   workflow_dispatch:
@@ -13,8 +12,17 @@ concurrency:
 
 jobs:
   build:
-    uses: nikosportolos/dart-package@v1
-    with:
-      coverage: true
-      codecov: true
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: dart-package
+        uses: nikosportolos/dart_package@v0.0.1
+        with:
+          coverage: true
+          codecov: true
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}
