@@ -81,7 +81,7 @@ runs:
     - name: 🧪 Run Tests
       shell: bash
       if: ${{ !inputs.skip_tests && !inputs.coverage }}
-      run: dart test -j ${{ inputs.concurrency }} --color
+      run: dart test --concurrency ${{ inputs.concurrency }} --color
 
     - name: 🧾 Generate code coverage
       shell: bash
@@ -100,11 +100,11 @@ runs:
 
     - name: 🚀 Publish on pub.dev
       shell: bash
-      if: ${{ inputs.publish }}
+      if: ${{ inputs.publish && inputs.pubdev_token != "" }}
       run: |
         dart pub global activate pana
         dart pub publish --dry-run
         pana --line-length ${{ inputs.line_length }} --exit-code-threshold ${{ inputs.pana_threshold }} ${{ inputs.working_directory }}
         mkdir -p ~/.config/dart
-        echo "${{inputs.pubdev_token}}" | base64 --decode >> ~/.config/dart/pub-credentials.json
+        echo "${{ inputs.pubdev_token }}" | base64 --decode >> ~/.config/dart/pub-credentials.json
         dart pub publish --force
