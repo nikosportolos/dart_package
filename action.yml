@@ -80,18 +80,18 @@ runs:
 
     - name: 🧪 Run Tests
       shell: bash
-      if: ${{ !inputs.skip_tests && !inputs.coverage }}
+      if: ${{ !inputs.skip_tests && !inputs.coverage  && !inputs.codecov }}
       run: dart test --concurrency ${{ inputs.concurrency }} --color
 
     - name: 🧾 Generate code coverage
       shell: bash
-      if: ${{ inputs.coverage }}
+      if: ${{ inputs.coverage || inputs.codecov }}
       run: |
         dart pub global activate coverage
         dart pub global run coverage:test_with_coverage
 
     - name: ☂ Upload coverage report to Codecov
-      if: ${{ inputs.coverage && inputs.codecov }}
+      if: ${{ inputs.codecov }}
       uses: codecov/codecov-action@v3
       with:
         token: ${{ inputs.codecov_token }}
@@ -100,7 +100,7 @@ runs:
 
     - name: 🚀 Publish on pub.dev
       shell: bash
-      if: ${{ inputs.publish && inputs.pubdev_token != '' }}
+      if: ${{ inputs.publish }}
       run: |
         dart pub global activate pana
         dart pub publish --dry-run
