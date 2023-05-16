@@ -1,5 +1,5 @@
+# This workflow runs when publishing a Dart package on pub.dev.
 name: Publish Workflow
-description: This workflow runs when publishing a Dart package on pub.dev.
 
 on:
   workflow_dispatch:

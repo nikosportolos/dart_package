@@ -1,5 +1,5 @@
+# This workflow runs on every pull-request to ensure dart package quality.
 name: PR Workflow
-description: This workflow runs on every pull-request to ensure dart package quality.
 
 on:
   workflow_dispatch:

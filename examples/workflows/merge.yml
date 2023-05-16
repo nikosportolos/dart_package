@@ -1,3 +1,4 @@
+# This workflow runs when merging code to the main branch.
 name: Merge Workflow
 
 on:

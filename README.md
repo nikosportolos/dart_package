@@ -1,6 +1,6 @@
 # Dart Package
 
-#### This is a GitHub Action to validate and publish a Dart package to [pub.dev](https://pub.dev/).
+#### This is a GitHub Action to validate and publish a Dart package on [pub.dev](https://pub.dev/).
 
 ## Table of contents
 
@@ -203,8 +203,8 @@ You can try the **data_package** GitHub Action using the workflows in the [examp
 
 ```yaml
 # .github/workflows/pr.yml 
+# This workflow runs on every pull-request to ensure dart package quality.
 name: PR Workflow
-description: This workflow runs on every pull-request to ensure dart package quality.
 
 on:
   workflow_dispatch:
@@ -234,6 +234,7 @@ jobs:
 
 ```yaml
 # .github/workflows/merge.yml 
+# This workflow runs when merging code to the main branch.
 name: Merge Workflow
 
 on:
@@ -269,8 +270,8 @@ jobs:
 
 ```yaml
 # .github/workflows/publish.yml 
+# This workflow runs when publishing a Dart package on pub.dev.
 name: Publish Workflow
-description: This workflow runs when publishing a Dart package on pub.dev.
 
 on:
   workflow_dispatch:
