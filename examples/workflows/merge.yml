@@ -18,11 +18,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - name: 📚 Git Checkout
-        uses: actions/checkout@v3
-
-      - name: dart-package
-        uses: nikosportolos/dart_package@v0.0.3
+      - uses: actions/checkout@v3
+      - uses: nikosportolos/dart_package@v0.0.3
         with:
           coverage: true
           codecov: true
