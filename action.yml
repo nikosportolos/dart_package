@@ -81,7 +81,7 @@ runs:
     - name: 🧪 Run Tests
       shell: bash
       if: ${{ !inputs.skip_tests && !inputs.coverage }}
-      run: dart test -j ${{ inputs.concurrency }} --color
+      run: dart test --concurrency ${{ inputs.concurrency }} --color
 
     - name: 🧾 Generate code coverage
       shell: bash
