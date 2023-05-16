@@ -140,6 +140,8 @@ The exit code will indicate if (max - granted points) <= threshold.
 
 ## Examples
 
+You can try the **data_package** GitHub Action using the workflows in the [examples](https://github.com/nikosportolos/data_package/tree/main/examples/workflows) folder.
+
 - ### Pull-request workflow
 
 ```yaml
@@ -196,13 +198,12 @@ jobs:
 ```yaml
 # .github/workflows/publish.yml 
 name: Publish Workflow
-description: This workflow runs when publishing a Dart package to pub.dev.
+description: This workflow runs when publishing a Dart package on pub.dev.
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
