@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+- [Setup](#setup)
+  - [Setting up secrets in GitHub](#setting-up-secrets)
+  - [Codecov](#codecov)
+  - [Pub.dev](#pubdev)
 - [Inputs](#inputs)
   - [working_directory](#working-directory)
   - [dart_sdk](#dart-sdk)
@@ -21,6 +25,59 @@
   - [Pull-request workflow](#pull-request-workflow)
   - [Merge workflow](#merge-workflow)
   - [Publish workflow](#publish-workflow)
+
+
+## Setup
+
+### Setting up secrets in GitHub
+
+In order to upload Coverage reports to Codecov or/and to publish a dart package on [pub.dev](https://pub.dev) 
+we need to set up the corresponding tokens as secrets in our GitHub repository.
+
+You can find [here](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces) 
+more information about secrets & environment variables.
+
+Your secrets in your GitHub repository should look that:
+
+<a href="https://github.com/nikosportolos/dart_package/blob/main/assets/images/github_secret.png" target="_blank">
+  <img src="https://github.com/nikosportolos/dart_package/blob/main/assets/images/github_secret.png" width="80%" alt="github-secrets">
+</a>
+
+
+- #### Codecov
+
+The unique repository upload token is found on the settings page of your project. 
+You need write access to view this token.
+
+For GitHub repositories the token will be found in `https://codecov.io/github/<owner>/<repo>/settings`.
+
+<a href="https://github.com/nikosportolos/dart_package/blob/main/assets/images/codecov_token.png" target="_blank">
+  <img src="https://github.com/nikosportolos/dart_package/blob/main/assets/images/codecov_token.png" width="80%" alt="codecov-token">
+</a>
+
+
+- #### Pub.dev
+
+You can aquire your `pub-credentials.json` simply by running the command `dart pub login` and logging in to pub.dev 
+with your Gmail account via a browser.
+
+The `pub-credentials.json` will be generated in the default dart config folder in your system.
+
+You can find it depending on your OS in the following directories:
+
+- On Linux *(see XDG specification)*
+  - If `$XDG_CONFIG_HOME` is defined:
+    - `$XDG_CONFIG_HOME/dart/pub-credentials.json`
+  - else
+    - `$HOME/.config/dart/pub-credentials.json`
+
+- On Mac OS *(see [developer.apple.com](https://developer.apple.com))*
+   - `~/Library/Application Support/dart/pub-credentials.json`
+
+- On Windows *(or maybe `%LOCALAPPDATA%` is better)*
+   - `%APPDATA%/dart/pub-credentials.json`
+
+Read more: https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
 
 
 ## Inputs
@@ -45,7 +102,7 @@ Specify the Dart SDK version that will be used.
 
 - ### analyze_directories
 
-Specify the directories where dart analyze will run.
+Specify the directories where [dart analyze](https://dart.dev/tools/dart-analyze) will run.
 
 |Required| Default    |
 |--------|------------|
@@ -54,7 +111,7 @@ Specify the directories where dart analyze will run.
   
 - ### line_length
 
-The line length to use with dart format.
+The line length to use with [dart format](https://dart.dev/tools/dart-format).
 
 |Required| Default |
 |--------|---------|
@@ -63,7 +120,7 @@ The line length to use with dart format.
   
 - ### concurrency
 
-Controls the number of test suites that runs concurrently, 
+Controls the number of test suites that runs [concurrently](https://pub.dev/packages/test#test-concurrency), 
 meaning that multiple tests in independent suites or platforms can run at the same time.
 
 |Required| Default |
@@ -82,7 +139,7 @@ Flag that defines whether to skip tests.
   
 - ### coverage
 
-Flag that defines whether to run tests with coverage.
+Flag that defines whether to run tests with [coverage](https://pub.dev/packages/test#collecting-code-coverage).
 
 |Required| Default |
 |--------|---------|
@@ -113,7 +170,7 @@ Requires the [codecov](#codecov) flag to be set to true.
    
 - ### publish
 
-Flag that defines whether to publish the Dart package on pub.dev. 
+Flag that defines whether to publish the Dart package on [pub.dev](https://pub.dev/). 
 
 |Required| Default |
 |--------|---------|
@@ -122,7 +179,7 @@ Flag that defines whether to publish the Dart package on pub.dev.
 
 - ### pubdev_token
 
-The token that will be used to publish the Dart package to pub.dev. 
+The token that will be used to publish the Dart package to [pub.dev](https://pub.dev/). 
 
 |Required| Default |
 |--------|---------|
@@ -131,7 +188,7 @@ The token that will be used to publish the Dart package to pub.dev.
    
 - ### pana_threshold
 
-The exit code will indicate if (max - granted points) <= threshold. 
+Set a threshold in [pana](https://pub.dev/packages/pana)'s analysis report. The exit code will indicate if (max - granted points) <= threshold. 
 
 |Required| Default |
 |--------|---------|
@@ -160,9 +217,16 @@ concurrency:
 
 jobs:
   build:
-    uses: nikosportolos/dart-package@v1
-    with:
-      coverage: false
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: dart-package
+        uses: nikosportolos/dart_package@v0.0.1
 ```
 
 
@@ -171,7 +235,6 @@ jobs:
 ```yaml
 # .github/workflows/merge.yml 
 name: Merge Workflow
-description: This workflow runs when merging a PR to the main branch.
 
 on:
   workflow_dispatch:
@@ -185,11 +248,20 @@ concurrency:
 
 jobs:
   build:
-    uses: nikosportolos/dart-package@v1
-    with:
-      coverage: true
-      codecov: true
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: dart-package
+        uses: nikosportolos/dart_package@v0.0.1
+        with:
+          coverage: true
+          codecov: true
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}
 ```
 
 
@@ -211,11 +283,20 @@ concurrency:
 
 jobs:
   build:
-    uses: nikosportolos/dart-package@v1
-    with:
-      coverage: true
-      codecov: true
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
-      publish: true
-      pubdev_token: ${{ secrets.PUBDEV_TOKEN }}
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: dart-package
+        uses: nikosportolos/dart_package@v0.0.1
+        with:
+          coverage: true
+          codecov: true
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}
+          publish: true
+          pubdev_token: ${{ secrets.PUBDEV_TOKEN }}
 ```
