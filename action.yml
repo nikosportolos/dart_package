@@ -100,7 +100,7 @@ runs:
 
     - name: 🚀 Publish on pub.dev
       shell: bash
-      if: ${{ inputs.publish && inputs.pubdev_token != "" }}
+      if: ${{ inputs.publish && inputs.pubdev_token != '' }}
       run: |
         dart pub global activate pana
         dart pub publish --dry-run
