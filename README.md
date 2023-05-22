@@ -6,21 +6,21 @@
 
 - [Setup](#setup)
   - [Setting up secrets in GitHub](#setting-up-secrets)
-  - [Codecov](#codecov)
+  - [Codecov](#setup-codecov)
   - [Pub.dev](#pubdev)
 - [Inputs](#inputs)
   - [working_directory](#working-directory)
   - [dart_sdk](#dart-sdk)
-  - [analyze_directories](#analyze_directories)
-  - [line_length](#line_length)
+  - [analyze_directories](#analyze-directories)
+  - [line_length](#line-length)
   - [concurrency](#concurrency)
-  - [skip_tests](#skip_tests)
+  - [skip_tests](#skip-tests)
   - [coverage](#coverage)
   - [codecov](#codecov)
-  - [codecov_token](#codecov_token)
+  - [codecov_token](#codecov-token)
   - [publish](#publish)
-  - [pubdev_token](#pubdev_token)
-  - [pana_threshold](#pana_threshold)
+  - [pubdev_token](#pubdev-token)
+  - [pana_threshold](#pana-threshold)
 - [Examples](#examples)
   - [Pull-request workflow](#pull-request-workflow)
   - [Merge workflow](#merge-workflow)
@@ -46,7 +46,7 @@ Your secrets in your GitHub repository should look that:
 </a>
 
 
-- #### Codecov
+- #### Setup Codecov
 
 The unique repository upload token is found on the settings page of your project. 
 You need write access to view this token.
