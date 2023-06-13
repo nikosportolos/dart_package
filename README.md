@@ -9,18 +9,6 @@
   - [Codecov](#setup-codecov)
   - [Pub.dev](#pubdev)
 - [Inputs](#inputs)
-  - [working_directory](#working-directory)
-  - [dart_sdk](#dart-sdk)
-  - [analyze_directories](#analyze-directories)
-  - [line_length](#line-length)
-  - [concurrency](#concurrency)
-  - [skip_tests](#skip-tests)
-  - [coverage](#coverage)
-  - [codecov](#codecov)
-  - [codecov_token](#codecov-token)
-  - [publish](#publish)
-  - [pubdev_token](#pubdev-token)
-  - [pana_threshold](#pana-threshold)
 - [Examples](#examples)
   - [Pull-request workflow](#pull-request-workflow)
   - [Merge workflow](#merge-workflow)
@@ -39,7 +27,7 @@ we need to set up the corresponding tokens as secrets in our GitHub repository.
 You can find [here](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces) 
 more information about secrets & environment variables.
 
-Your secrets in your GitHub repository should look that:
+Your secrets in your GitHub repository should look like that:
 
 <a href="https://github.com/nikosportolos/dart_package/blob/main/assets/images/github_secret.png" target="_blank">
   <img src="https://github.com/nikosportolos/dart_package/blob/main/assets/images/github_secret.png" width="80%" alt="github-secrets">
@@ -48,7 +36,7 @@ Your secrets in your GitHub repository should look that:
 
 - #### Setup Codecov
 
-The unique repository upload token is found on the settings page of your project. 
+The unique repository upload token is found on the settings page of your project.
 You need write access to view this token.
 
 For GitHub repositories the token will be found in `https://codecov.io/github/<owner>/<repo>/settings`.
@@ -67,23 +55,23 @@ The `pub-credentials.json` will be generated in the default dart config folder i
 
 You can find it depending on your OS in the following directories:
 
-- On Linux *(see XDG specification)*
+- On **Linux** *(see XDG specification)*
   - If `$XDG_CONFIG_HOME` is defined:
     - `$XDG_CONFIG_HOME/dart/pub-credentials.json`
   - else
     - `$HOME/.config/dart/pub-credentials.json`
 
-- On Mac OS *(see [developer.apple.com](https://developer.apple.com))*
+- On **Mac OS** *(see [developer.apple.com](https://developer.apple.com))*
    - `~/Library/Application Support/dart/pub-credentials.json`
 
-- On Windows *(or maybe `%LOCALAPPDATA%` is better)*
+- On **Windows**
    - `%APPDATA%/dart/pub-credentials.json`
 
 Read more: https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
 
 
-> **Notice** that the `pub-credentials.json` needs to be encoded to a base64 string
-> before adding it to your repo secrets.
+> **Please notice that** the `pub-credentials.json` needs to be encoded to a base64 string
+> before adding it to your repository secrets.
 > 
 > You can easily encode it using the following command:
 > 
@@ -92,117 +80,20 @@ Read more: https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
 
 ## Inputs
 
-- ### working_directory
-
-Specify the working directory where the workflow will run.
-
-|Required|Default|
-|--------|-------|
-|false   | "."   |
-
-
-- ### dart_sdk
-
-Specify the Dart SDK version that will be used.
-
-|Required| Default |
-|--------|---------|
-|false   | "3.0.2" |
-
-
-- ### analyze_directories
-
-Specify the directories where [dart analyze](https://dart.dev/tools/dart-analyze) will run.
-
-|Required| Default    |
-|--------|------------|
-|false   | "lib test" |
-
-  
-- ### line_length
-
-The line length to use with [dart format](https://dart.dev/tools/dart-format).
-
-|Required| Default |
-|--------|---------|
-|false   | "120"   |
-
-  
-- ### concurrency
-
-Controls the number of test suites that runs [concurrently](https://pub.dev/packages/test#test-concurrency), 
-meaning that multiple tests in independent suites or platforms can run at the same time.
-
-|Required| Default |
-|--------|---------|
-|false   | "4"     |
-
-  
-- ### skip_tests
-
-Flag that defines whether to skip tests.
-
-|Required| Default |
-|--------|---------|
-|false   | "false" |
-
-  
-- ### coverage
-
-Flag that defines whether to run tests with [coverage](https://pub.dev/packages/test#collecting-code-coverage).
-
-|Required| Default |
-|--------|---------|
-|false   | "false" |
-
- 
-- ### codecov
-
-Flag that defines whether to upload coverage reports to [Codecov](https://about.codecov.io/). 
-
-Requires the [codecov_token](#codecov_token).
-
-|Required| Default |
-|--------|---------|
-|false   | "false" |
-
-  
-- ### codecov_token
-
-The token that will be used to upload coverage reports to [Codecov](https://about.codecov.io/). 
-
-Requires the [codecov](#codecov) flag to be set to true. 
-
-|Required| Default |
-|--------|---------|
-|false   | ""      |
-
-   
-- ### publish
-
-Flag that defines whether to publish the Dart package on [pub.dev](https://pub.dev/). 
-
-|Required| Default |
-|--------|---------|
-|false   | "false" |
-
-
-- ### pubdev_token
-
-The token that will be used to publish the Dart package to [pub.dev](https://pub.dev/). 
-
-|Required| Default |
-|--------|---------|
-|false   | ""      |
-
-   
-- ### pana_threshold
-
-Set a threshold in [pana](https://pub.dev/packages/pana)'s analysis report. The exit code will indicate if (max - granted points) <= threshold. 
-
-|Required| Default |
-|--------|---------|
-|false   | "19"    |
+| Name                | Description                                                                                                                                                                                           | Required | Default    |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|------------|
+| working_directory   | Specify the working directory where the workflow will run.                                                                                                                                            | false    | "."        |
+| dart_sdk            | Specify the Dart SDK version that will be used.                                                                                                                                                       | false    | "3.0.2"    |
+| analyze_directories | Specify the directories where [dart analyze](https://dart.dev/tools/dart-analyze) will run.                                                                                                           | false    | "lib test" |
+| line_length         | The line length to use with [dart format](https://dart.dev/tools/dart-format).                                                                                                                        | false    | "120"      |
+| concurrency         | Controls the number of test suites that runs [concurrently](https://pub.dev/packages/test#test-concurrency), meaning that multiple tests in independent suites or platforms can run at the same time. | false    | "4"        |
+| skip_tests          | Flag that defines whether to skip tests.                                                                                                                                                              | false    | "false"    |
+| coverage            | Flag that defines whether to run tests with [coverage](https://pub.dev/packages/test#collecting-code-coverage).                                                                                       | false    | "false"    |
+| codecov             | Flag that defines whether to upload coverage reports to [Codecov](https://about.codecov.io/).</br></br>**Requires the [codecov_token](#codecov_token).**                                              | false    | "false"    |
+| codecov_token       | The token that will be used to upload coverage reports to [Codecov](https://about.codecov.io/).</br></br>**Requires the [codecov](#codecov) flag to be set to true.**                                 | false    | ""         |
+| publish             | Flag that defines whether to publish the Dart package on [pub.dev](https://pub.dev/).                                                                                                                 | false    | "false"    |
+| pubdev_token        | The token that will be used to publish the Dart package to [pub.dev](https://pub.dev/).                                                                                                               | false    | ""         |
+| pana_threshold      | Set a threshold in [pana](https://pub.dev/packages/pana)'s analysis report.</br>The exit code will indicate if (max - granted points) <= threshold.                                                   | false    | "19"       |
 
 
 ## Examples
@@ -304,10 +195,12 @@ jobs:
           pubdev_token: ${{ secrets.PUBDEV_TOKEN }}
 ```
 
+
 ## Changelog
 
 Check the [changelog](https://github.com/nikosportolos/dart_package/tree/main/CHANGELOG.md)
 to learn what's new in **dart_package**.
+
 
 ## Contribution
 
