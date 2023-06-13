@@ -124,7 +124,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: nikosportolos/dart_package@v0.0.5
+      - uses: nikosportolos/dart_package@v0.0.6
 ```
 
 
@@ -153,7 +153,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: nikosportolos/dart_package@v0.0.5
+      - uses: nikosportolos/dart_package@v0.0.6
         with:
           coverage: true
           codecov: true
@@ -186,7 +186,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: nikosportolos/dart_package@v0.0.5
+      - uses: nikosportolos/dart_package@v0.0.6
         with:
           coverage: true
           codecov: true
