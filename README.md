@@ -105,9 +105,9 @@ Specify the working directory where the workflow will run.
 
 Specify the Dart SDK version that will be used.
 
-|Required| Default  |
-|--------|----------|
-|false   | "2.19.6" |
+|Required| Default |
+|--------|---------|
+|false   | "3.0.2" |
 
 
 - ### analyze_directories
