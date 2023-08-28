@@ -92,7 +92,7 @@ runs:
 
     - name: ☂ Upload coverage report to Codecov
       if: ${{ inputs.codecov == 'true' }}
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v3.1.4
       with:
         token: ${{ inputs.codecov_token }}
         files: coverage/lcov.info
