@@ -1,3 +1,8 @@
+## v0.1.1
+
+- Bump default dart sdk version to 3.1.0 ([#14](https://github.com/nikosportolos/dart_package/issues/14))
+
+
 ## v0.1.0
 
 - Bump default dart sdk version to 3.0.6 ([#13](https://github.com/nikosportolos/dart_package/issues/13))
