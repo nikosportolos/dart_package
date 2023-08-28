@@ -3,6 +3,7 @@
 - Bump default dart sdk version to 3.1.0 ([#14](https://github.com/nikosportolos/dart_package/issues/14))
 - Bump 'setup-dart' action to 1.5.0 ([#16](https://github.com/nikosportolos/dart_package/issues/16))
 - Bump 'codecov-action' to 3.1.4 ([#18](https://github.com/nikosportolos/dart_package/issues/18))
+- Bump 'checkout' action to 3.6.0 ([#20](https://github.com/nikosportolos/dart_package/issues/20))
 
 
 ## v0.1.0
