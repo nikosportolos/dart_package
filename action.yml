@@ -59,7 +59,7 @@ runs:
   using: "composite"
   steps:
     - name: 📑 Git Checkout
-      uses: actions/checkout@v3.6.0
+      uses: actions/checkout@v4.0.0
 
     - name: 🎯 Setup Dart
       uses: dart-lang/setup-dart@v1.5.0
