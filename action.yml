@@ -62,7 +62,7 @@ runs:
       uses: actions/checkout@v4.0.0
 
     - name: 🎯 Setup Dart
-      uses: dart-lang/setup-dart@v1.5.0
+      uses: dart-lang/setup-dart@v1.5.1
       with:
         sdk: ${{ inputs.dart_sdk }}
 
