@@ -123,8 +123,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v3.6.0
-      - uses: nikosportolos/dart_package@v0.1.1
+      - uses: actions/checkout@v4.1.0
+      - uses: nikosportolos/dart_package@v0.1.2
 ```
 
 
@@ -152,8 +152,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v3.6.0
-      - uses: nikosportolos/dart_package@v0.1.1
+      - uses: actions/checkout@v4.1.0
+      - uses: nikosportolos/dart_package@v0.1.2
         with:
           coverage: true
           codecov: true
@@ -184,8 +184,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v3.6.0
-      - uses: nikosportolos/dart_package@v0.1.1
+      - uses: actions/checkout@v4.1.0
+      - uses: nikosportolos/dart_package@v0.1.2
         with:
           coverage: true
           codecov: true
