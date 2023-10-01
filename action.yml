@@ -1,5 +1,5 @@
 name: dart-package
-description: "This is an action to validate and publish a Dart package to pub.dev."
+description: "This is an action to validate and publish a Dart/Flutter package to pub.dev."
 author: Nikos Portolos
 branding:
   icon: "activity"
@@ -10,10 +10,18 @@ inputs:
     description: "Specify the working directory."
     required: false
     default: "."
+  sdk:
+    description: "Specify which SDK to use (dart, flutter)."
+    required: false
+    default: "dart"
   dart_sdk:
     description: "Specify the Dart SDK version."
     required: false
     default: "3.1.0"
+  flutter_sdk:
+    description: "Specify the Flutter SDK version."
+    required: false
+    default: "3.13.0"
   analyze_directories:
     description: "Specify the directories to run dart analyze."
     required: false
@@ -43,11 +51,11 @@ inputs:
     required: false
     default: ""
   publish:
-    description: "Flag that defines whether to publish the Dart package on pub.dev."
+    description: "Flag that defines whether to publish the package on pub.dev."
     required: false
     default: "false"
   pubdev_token:
-    description: "The token that will be used to publish the dart package to pub.dev."
+    description: "The token that will be used to publish the package to pub.dev."
     required: false
     default: ""
   pana_threshold:
@@ -61,36 +69,57 @@ runs:
     - name: 📑 Git Checkout
       uses: actions/checkout@v4.1.0
 
-    - name: 🎯 Setup Dart
+    - shell: bash
+      run: echo "🎯 Setup ${{ inputs.sdk }} SDK"
+
+    - name: Setup Dart SDK
+      if: ${{ inputs.sdk == 'dart' }}
       uses: dart-lang/setup-dart@v1.5.1
       with:
         sdk: ${{ inputs.dart_sdk }}
 
-    - name: 📦 Install Dependencies
-      shell: bash
-      run: dart pub get
+    - name: Setup Flutter
+      if: ${{ inputs.sdk == 'flutter' }}
+      uses: subosito/flutter-action@v2
+      with:
+        sdk: ${{ inputs.flutter_sdk }}
 
-    - name: 🎨 Check Formatting
+    - name: Install Dependencies
       shell: bash
-      run: dart format --output none --set-exit-if-changed -l ${{ inputs.line_length }} ${{ inputs.working_directory }}
+      run: |
+        echo "📦 Install Dependencies"
+        dart pub get
 
-    - name: 🕵️ Analyze
+    - name: Check Formatting
       shell: bash
-      run: dart analyze --fatal-infos --fatal-warnings ${{ inputs.analyze_directories }}
+      run: |
+        echo "🎨 Check Formatting"
+        dart format --output none --set-exit-if-changed -l ${{ inputs.line_length }} ${{ inputs.working_directory }}
 
-    - name: 🧪 Run Tests
+    - name: Analyze
+      shell: bash
+      run: |
+        echo "🕵️ Analyze"
+        ${{ inputs.sdk }} analyze --fatal-infos --fatal-warnings ${{ inputs.analyze_directories }}
+
+    - name: Run Tests
       shell: bash
       if: ${{ inputs.skip_tests == 'false' && inputs.coverage == 'false' && inputs.codecov == 'false'}}
-      run: dart test --concurrency ${{ inputs.concurrency }} --color
+      run: |
+        echo "🧪 Run Tests"
+        ${{ inputs.sdk }} test --concurrency ${{ inputs.concurrency }} --color
 
-    - name: 🧾 Generate code coverage
+    - name: Generate code coverage
       shell: bash
       if: ${{ inputs.coverage == 'true' || inputs.codecov == 'true' }}
       run: |
-        dart pub global activate coverage
-        dart pub global run coverage:test_with_coverage
+        echo "🧾 Generate code coverage"
+        ${{ inputs.sdk }} pub global activate coverage
+        ${{ inputs.sdk }} pub global run coverage:test_with_coverage
 
-    - name: ☂ Upload coverage report to Codecov
+    - shell: bash
+      run: echo "☂ Upload coverage report to Codecov"
+    - name: Upload coverage report to Codecov
       if: ${{ inputs.codecov == 'true' }}
       uses: codecov/codecov-action@v3.1.4
       with:
@@ -98,13 +127,14 @@ runs:
         files: coverage/lcov.info
         fail_ci_if_error: true
 
-    - name: 🚀 Publish on pub.dev
+    - name: Publish on pub.dev
       shell: bash
       if: ${{ inputs.publish == 'true' }}
       run: |
-        dart pub global activate pana
-        dart pub publish --dry-run
+        echo "🚀 Publish on pub.dev"
+        ${{ inputs.sdk }} pub global activate pana
+        ${{ inputs.sdk }} pub publish --dry-run
         pana --line-length ${{ inputs.line_length }} --exit-code-threshold ${{ inputs.pana_threshold }} ${{ inputs.working_directory }}
         mkdir -p ~/.config/dart
         echo "${{ inputs.pubdev_token }}" | base64 --decode >> ~/.config/dart/pub-credentials.json
-        dart pub publish --force
+        ${{ inputs.sdk }} pub publish --force

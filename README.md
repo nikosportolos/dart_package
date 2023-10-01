@@ -1,6 +1,6 @@
 # Dart Package
 
-#### This is a GitHub Action to validate and publish a Dart package on [pub.dev](https://pub.dev/).
+#### This is a GitHub Action to validate and publish Dart and Flutter packages on [pub.dev](https://pub.dev/).
 
 ## Table of contents
 
@@ -13,6 +13,7 @@
   - [Pull-request workflow](#pull-request-workflow)
   - [Merge workflow](#merge-workflow)
   - [Publish workflow](#publish-workflow)
+  - [Flutter workflow](#flutter-workflow)
 - [Changelog](#changelog)
 - [Contribution](#contribution)
 
@@ -21,7 +22,7 @@
 
 ### Setting up secrets in GitHub
 
-In order to upload Coverage reports to Codecov or/and to publish a dart package on [pub.dev](https://pub.dev) 
+In order to upload Coverage reports to Codecov or/and to publish a package on [pub.dev](https://pub.dev) 
 we need to set up the corresponding tokens as secrets in our GitHub repository.
 
 You can find [here](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces) 
@@ -48,7 +49,7 @@ For GitHub repositories the token will be found in `https://codecov.io/github/<o
 
 - #### Pub.dev
 
-You can aquire your `pub-credentials.json` simply by running the command `dart pub login` and logging in to pub.dev 
+You can acquire your `pub-credentials.json` simply by running the command `dart pub login` and logging in to pub.dev 
 with your Gmail account via a browser.
 
 The `pub-credentials.json` will be generated in the default dart config folder in your system.
@@ -61,16 +62,20 @@ You can find it depending on your OS in the following directories:
   - else
     - `$HOME/.config/dart/pub-credentials.json`
 
+
 - On **Mac OS** *(see [developer.apple.com](https://developer.apple.com))*
    - `~/Library/Application Support/dart/pub-credentials.json`
+
 
 - On **Windows**
    - `%APPDATA%/dart/pub-credentials.json`
 
-Read more: https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
+Read more: 
+- https://pub.dev/documentation/cli_pkg/latest/cli_pkg/pubCredentials.html
+- https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
 
 
-> **Please notice that** the `pub-credentials.json` needs to be encoded to a base64 string
+> **Please notice** that the `pub-credentials.json` needs to be encoded into a base64 string
 > before adding it to your repository secrets.
 > 
 > You can easily encode it using the following command:
@@ -83,14 +88,16 @@ Read more: https://github.com/dart-lang/pub/issues/2999#issuecomment-908350917
 | Name                | Description                                                                                                                                                                                           | Required | Default    |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|------------|
 | working_directory   | Specify the working directory where the workflow will run.                                                                                                                                            | false    | "."        |
-| dart_sdk            | Specify the Dart SDK version that will be used.                                                                                                                                                       | false    | "3.1.0"    |
+| sdk                 | Specify which SDK to use (dart, flutter).                                                                                                                                                             | false    | "dart"     |
+| dart_sdk            | Specify the Dart SDK version that will be used. </br> This input will be ignored if `sdk` is set to `flutter`.                                                                                        | false    | "3.1.0"    |
+| flutter_sdk         | Specify the Flutter SDK version that will be used. </br> This input will be ignored if `sdk` is set to `dart`.                                                                                        | false    | "3.13.0"   |
 | analyze_directories | Specify the directories where [dart analyze](https://dart.dev/tools/dart-analyze) will run.                                                                                                           | false    | "lib test" |
 | line_length         | The line length to use with [dart format](https://dart.dev/tools/dart-format).                                                                                                                        | false    | "120"      |
 | concurrency         | Controls the number of test suites that runs [concurrently](https://pub.dev/packages/test#test-concurrency), meaning that multiple tests in independent suites or platforms can run at the same time. | false    | "4"        |
 | skip_tests          | Flag that defines whether to skip tests.                                                                                                                                                              | false    | "false"    |
 | coverage            | Flag that defines whether to run tests with [coverage](https://pub.dev/packages/test#collecting-code-coverage).                                                                                       | false    | "false"    |
-| codecov             | Flag that defines whether to upload coverage reports to [Codecov](https://about.codecov.io/).</br></br>**Requires the [codecov_token](#codecov_token).**                                              | false    | "false"    |
-| codecov_token       | The token that will be used to upload coverage reports to [Codecov](https://about.codecov.io/).</br></br>**Requires the [codecov](#codecov) flag to be set to true.**                                 | false    | ""         |
+| codecov             | Flag that defines whether to upload coverage reports to [Codecov](https://about.codecov.io/).</br></br>**Requires the `codecov_token`.**                                                              | false    | "false"    |
+| codecov_token       | The token that will be used to upload coverage reports to [Codecov](https://about.codecov.io/).</br></br>**Requires the `codecov` flag to be set to true.**                                           | false    | ""         |
 | publish             | Flag that defines whether to publish the Dart package on [pub.dev](https://pub.dev/).                                                                                                                 | false    | "false"    |
 | pubdev_token        | The token that will be used to publish the Dart package to [pub.dev](https://pub.dev/).                                                                                                               | false    | ""         |
 | pana_threshold      | Set a threshold in [pana](https://pub.dev/packages/pana)'s analysis report.</br>The exit code will indicate if (max - granted points) <= threshold.                                                   | false    | "19"       |
@@ -192,6 +199,36 @@ jobs:
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
           publish: true
           pubdev_token: ${{ secrets.PUBDEV_TOKEN }}
+```
+
+
+- ### Flutter workflow
+
+```yaml
+# .github/workflows/flutter.yml 
+# This workflow runs on every pull-request to ensure flutter package quality.
+name: Flutter Workflow
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - uses: nikosportolos/dart_package@v0.1.2
+        sdK: flutter
+        flutter-sdk: 3.13.6
 ```
 
 
