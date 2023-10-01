@@ -1,11 +1,10 @@
-# This workflow runs when merging code to the main branch.
-name: Merge Workflow
+# This workflow runs when publishing a Dart package on pub.dev.
+name: Publish Workflow
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -19,8 +18,10 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.1.2
+      - uses: nikosportolos/dart_package@v0.2.0
         with:
           coverage: true
           codecov: true
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
+          publish: true
+          pubdev_token: ${{ secrets.PUBDEV_TOKEN }}

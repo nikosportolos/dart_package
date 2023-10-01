@@ -1,0 +1,23 @@
+# This workflow runs on every pull-request to ensure Flutter package quality.
+name: PR Workflow
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - uses: nikosportolos/dart_package@v0.2.0
+        with:
+          sdk: flutter

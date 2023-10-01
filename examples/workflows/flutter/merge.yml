@@ -1,0 +1,27 @@
+# This workflow runs when merging code to the main branch.
+name: Merge Workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: .
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - uses: nikosportolos/dart_package@v0.2.0
+        with:
+          sdk: flutter
+          coverage: true
+          codecov: true
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}

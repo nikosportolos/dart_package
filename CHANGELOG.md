@@ -1,7 +1,14 @@
+## v0.2.0
+
+- Support Flutter packages ([#28](https://github.com/nikosportolos/dart_package/issues/28))
+- Bump SDK versions ([#30](https://github.com/nikosportolos/dart_package/issues/30))
+
+
 ## v0.1.2
 
 - Bump dart-lang/setup-dart from 1.5.0 to 1.5.1 ([#25](https://github.com/nikosportolos/dart_package/pull/25))
 - Bump actions/checkout from 4.0.0 to 4.1.0 ([#26](https://github.com/nikosportolos/dart_package/pull/26))
+- Update examples and README.md
 
 
 ## v0.1.1
