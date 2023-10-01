@@ -1,4 +1,4 @@
-# This workflow runs when publishing a Dart package on pub.dev.
+# This workflow runs when publishing a Flutter package on pub.dev.
 name: Publish Workflow
 
 on:
@@ -18,8 +18,9 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.1.2
+      - uses: nikosportolos/dart_package@v0.2.0
         with:
+          sdk: flutter
           coverage: true
           codecov: true
           codecov_token: ${{ secrets.CODECOV_TOKEN }}

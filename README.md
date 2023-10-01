@@ -111,7 +111,7 @@ You can try the **data_package** GitHub Action using the workflows in the [examp
 
 ```yaml
 # .github/workflows/pr.yml 
-# This workflow runs on every pull-request to ensure dart package quality.
+# This workflow runs on every pull-request to ensure Dart package quality.
 name: PR Workflow
 
 on:
@@ -131,7 +131,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.1.2
+      - uses: nikosportolos/dart_package@v0.2.0
 ```
 
 
@@ -160,7 +160,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.1.2
+      - uses: nikosportolos/dart_package@v0.2.0
         with:
           coverage: true
           codecov: true
@@ -192,7 +192,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.1.2
+      - uses: nikosportolos/dart_package@v0.2.0
         with:
           coverage: true
           codecov: true
@@ -206,7 +206,7 @@ jobs:
 
 ```yaml
 # .github/workflows/flutter.yml 
-# This workflow runs on every pull-request to ensure flutter package quality.
+# This workflow runs on every pull-request to ensure Flutter package quality.
 name: Flutter Workflow
 
 on:
@@ -226,7 +226,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.1.2
+      - uses: nikosportolos/dart_package@v0.2.0
         sdK: flutter
         flutter-sdk: 3.13.6
 ```
