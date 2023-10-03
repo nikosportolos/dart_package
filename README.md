@@ -1,6 +1,12 @@
-# Dart Package
+# dart_package
 
-#### This is a GitHub Action to validate and publish Dart and Flutter packages on [pub.dev](https://pub.dev/).
+Optimize your Dart & Flutter package development workflow with the 
+[**dart_package**](https://github.com/marketplace/actions/dart-package) GitHub Action.
+
+This action helps you streamline your development process cycle by automating in-depth package analysis, 
+running tests, tracking code-coverage with [Codecov](https://codecov.io), as well as hassle-free 
+publishing on [pub.dev](https://pub.dev), saving you time and effort.
+
 
 ## Table of contents
 
@@ -105,7 +111,7 @@ Read more:
 
 ## Examples
 
-You can try the **data_package** GitHub Action using the workflows in the [examples](https://github.com/nikosportolos/data_package/tree/main/examples/workflows) folder.
+You can try the **dart_package** GitHub Action using the workflows in the [examples](https://github.com/nikosportolos/dart_package/tree/main/examples/workflows) folder.
 
 - ### Pull-request workflow
 
