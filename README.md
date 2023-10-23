@@ -69,7 +69,7 @@ You can find it depending on your OS in the following directories:
     - `$HOME/.config/dart/pub-credentials.json`
 
 
-- On **Mac OS** *(see [developer.apple.com](https://developer.apple.com))*
+- On **MacOS** *(see [developer.apple.com](https://developer.apple.com))*
    - `~/Library/Application Support/dart/pub-credentials.json`
 
 
@@ -136,8 +136,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.2.0
+      - uses: actions/checkout@v4
+      - uses: nikosportolos/dart_package@v0.2.1
 ```
 
 
@@ -165,8 +165,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.2.0
+      - uses: actions/checkout@v4
+      - uses: nikosportolos/dart_package@v0.2.1
         with:
           coverage: true
           codecov: true
@@ -197,8 +197,8 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.2.0
+      - uses: actions/checkout@v4
+      - uses: nikosportolos/dart_package@v0.2.1
         with:
           coverage: true
           codecov: true
@@ -231,10 +231,10 @@ jobs:
         working-directory: .
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4.1.0
-      - uses: nikosportolos/dart_package@v0.2.0
+      - uses: actions/checkout@v4
+      - uses: nikosportolos/dart_package@v0.2.1
         sdK: flutter
-        flutter-sdk: 3.13.6
+        flutter-sdk: 3.13.8
 ```
 
 
