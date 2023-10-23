@@ -67,14 +67,14 @@ runs:
   using: "composite"
   steps:
     - name: 📑 Git Checkout
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@v4
 
     - shell: bash
       run: echo "🎯 Setup ${{ inputs.sdk }} SDK"
 
     - name: Setup Dart SDK
       if: ${{ inputs.sdk == 'dart' }}
-      uses: dart-lang/setup-dart@v1.6.0
+      uses: dart-lang/setup-dart@v1
       with:
         sdk: ${{ inputs.dart_sdk }}
 
@@ -124,7 +124,7 @@ runs:
       run: echo "☂ Upload coverage report to Codecov"
     - name: Upload coverage report to Codecov
       if: ${{ inputs.codecov == 'true' }}
-      uses: codecov/codecov-action@v3.1.4
+      uses: codecov/codecov-action@v3
       with:
         token: ${{ inputs.codecov_token }}
         files: coverage/lcov.info
