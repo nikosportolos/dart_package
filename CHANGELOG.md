@@ -1,3 +1,25 @@
+## v0.2.1
+
+#### Documentation
+
+- Update README.md
+
+#### Changes/Improvements
+
+- Cache Flutter SDK ([#34](https://github.com/nikosportolos/dart_package/issues/34))
+- Use major release tags instead of specific patch release tags ([#39](https://github.com/nikosportolos/dart_package/issues/39))
+
+#### Dependencies
+
+- Bump dart-lang/setup-dart from 1.5.1 to 1.6.0 ([#37](https://github.com/nikosportolos/dart_package/pull/37))
+- Bump actions/checkout from 4.1.0 to 4.1.1 ([#38](https://github.com/nikosportolos/dart_package/pull/38))
+
+#### Default values
+
+- Bump default Dart SDK to 3.1.4 ([#41](https://github.com/nikosportolos/dart_package/issues/41))
+- Bump default Flutter SDK to 3.13.8 ([#42](https://github.com/nikosportolos/dart_package/issues/42))
+
+
 ## v0.2.0
 
 - Support Flutter packages ([#28](https://github.com/nikosportolos/dart_package/issues/28))
