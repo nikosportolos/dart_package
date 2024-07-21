@@ -17,11 +17,11 @@ inputs:
   dart_sdk:
     description: "Specify the Dart SDK version."
     required: false
-    default: "3.1.4"
+    default: "3.4.4"
   flutter_sdk:
     description: "Specify the Flutter SDK version."
     required: false
-    default: "3.13.8"
+    default: "3.22.3"
   analyze_directories:
     description: "Specify the directories to run dart analyze."
     required: false
