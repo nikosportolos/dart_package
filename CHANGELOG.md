@@ -1,3 +1,10 @@
+## v0.2.2
+
+#### Default values
+
+- Bump Flutter & Dart default SDKs to the latest ([#47](https://github.com/nikosportolos/dart_package/pull/47))
+
+
 ## v0.2.1
 
 #### Documentation
