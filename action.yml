@@ -124,7 +124,7 @@ runs:
       run: echo "☂ Upload coverage report to Codecov"
     - name: Upload coverage report to Codecov
       if: ${{ inputs.codecov == 'true' }}
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ inputs.codecov_token }}
         files: coverage/lcov.info
