@@ -1,0 +1,35 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.yml", "**/*.yaml"],
+      "plugins": ["yml"],
+      "extends": ["plugin:yml/recommended"]
+    },
+    {
+      "files": ["**/*.json"],
+      "plugins": ["json-format", "json/json"],
+      "rules": { "json/no-duplicate-keys": "error" }
+    },
+    {
+      "files": ["**/*.md"],
+      "plugins": ["markdown"],
+      "rules": {
+        "markdown/no-html": "error"
+      }
+    }
+  ],
+  "ignores": ["node_modules", "dist"],
+  "plugins": ["json-format"]
+}

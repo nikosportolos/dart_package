@@ -1,70 +1,70 @@
 name: dart-package
-description: "This is an action to validate and publish a Dart/Flutter package to pub.dev."
+description: 'This is an action to validate and publish a Dart/Flutter package to pub.dev.'
 author: Nikos Portolos
 branding:
-  icon: "activity"
-  color: "blue"
+  icon: 'activity'
+  color: 'blue'
 
 inputs:
   working_directory:
-    description: "Specify the working directory."
+    description: 'Specify the working directory.'
     required: false
-    default: "."
+    default: '.'
   sdk:
-    description: "Specify which SDK to use (dart, flutter)."
+    description: 'Specify which SDK to use (dart, flutter).'
     required: false
-    default: "dart"
+    default: 'dart'
   dart_sdk:
-    description: "Specify the Dart SDK version."
+    description: 'Specify the Dart SDK version.'
     required: false
-    default: "3.5.3"
+    default: '3.5.3'
   flutter_sdk:
-    description: "Specify the Flutter SDK version."
+    description: 'Specify the Flutter SDK version.'
     required: false
-    default: "3.24.3"
+    default: '3.24.3'
   analyze_directories:
-    description: "Specify the directories to run dart analyze."
+    description: 'Specify the directories to run dart analyze.'
     required: false
-    default: "lib test"
+    default: 'lib test'
   line_length:
-    description: "The line length to use with dart format."
+    description: 'The line length to use with dart format.'
     required: false
-    default: "120"
+    default: '120'
   concurrency:
-    description: "Controls the number of test suites that runs concurrently, meaning that multiple tests in independent suites or platforms can run at the same time."
+    description: 'Controls the number of test suites that runs concurrently, meaning that multiple tests in independent suites or platforms can run at the same time.'
     required: false
-    default: "4"
+    default: '4'
   skip_tests:
-    description: "Flag that defines whether to skip tests."
+    description: 'Flag that defines whether to skip tests.'
     required: false
-    default: "false"
+    default: 'false'
   coverage:
-    description: "Flag that defines whether to run tests with coverage."
+    description: 'Flag that defines whether to run tests with coverage.'
     required: false
-    default: "false"
+    default: 'false'
   codecov:
-    description: "Flag that defines whether to upload coverage reports to Codecov. Requires the codecov_token."
+    description: 'Flag that defines whether to upload coverage reports to Codecov. Requires the codecov_token.'
     required: false
-    default: "false"
+    default: 'false'
   codecov_token:
-    description: "The token that will be used to upload coverage reports to Codecov. Requires the codecov flag to be set to true."
+    description: 'The token that will be used to upload coverage reports to Codecov. Requires the codecov flag to be set to true.'
     required: false
-    default: ""
+    default: ''
   publish:
-    description: "Flag that defines whether to publish the package on pub.dev."
+    description: 'Flag that defines whether to publish the package on pub.dev.'
     required: false
-    default: "false"
+    default: 'false'
   pubdev_token:
-    description: "The token that will be used to publish the package to pub.dev."
+    description: 'The token that will be used to publish the package to pub.dev.'
     required: false
-    default: ""
+    default: ''
   pana_threshold:
-    description: "The exit code will indicate if (max - granted points) <= threshold."
+    description: 'The exit code will indicate if (max - granted points) <= threshold.'
     required: false
-    default: "19"
+    default: '19'
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: 📑 Git Checkout
       uses: actions/checkout@v4
