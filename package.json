@@ -1,0 +1,36 @@
+{
+  "name": "dart_package",
+  "version": "0.2.2",
+  "description": "Optimize your Dart & Flutter package development workflow with the [**dart_package**](https://github.com/marketplace/actions/dart-package) GitHub Action.",
+  "author": "Nikos Portolos",
+  "license": "MIT",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:check": "eslint . --exit-on-fatal-error",
+    "audit": "npm audit --dry-run --audit-level=low"
+  },
+  "keywords": [
+    "dart",
+    "flutter",
+    "action",
+    "cicd",
+    "codecov",
+    "github-actions"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@eslint/json": "^0.9.0",
+    "@eslint/markdown": "^6.2.1",
+    "eslint": "^9.16.0",
+    "eslint-plugin-json-format": "^2.0.1",
+    "globals": "^15.13.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-packagejson": "^2.5.6",
+    "prettier-plugin-sh": "^0.14.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "json",
+      "autoFix": true
+    }
+  ]
+}

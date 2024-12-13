@@ -2,14 +2,14 @@ version: 2
 enable-beta-ecosystems: true
 
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "./"
+  - package-ecosystem: 'github-actions'
+    directory: './'
     schedule:
-      interval: "daily"
-      time: "00:00"
-      day: "monday"
-      timezone: "Europe/Athens"
+      interval: 'daily'
+      time: '00:00'
+      day: 'monday'
+      timezone: 'Europe/Athens'
     assignees:
-      - "nikosportolos"
+      - 'nikosportolos'
     reviewers:
-      - "nikosportolos"
+      - 'nikosportolos'

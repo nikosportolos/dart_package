@@ -15,7 +15,7 @@ jobs:
     defaults:
       run:
         working-directory: .
-    runs-on: "ubuntu-latest"
+    runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
       - uses: nikosportolos/dart_package@v0.2.2
