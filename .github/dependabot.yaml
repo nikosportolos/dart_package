@@ -6,3 +6,10 @@ updates:
     directory: "./"
     schedule:
       interval: "daily"
+      time: "00:00"
+      day: "monday"
+      timezone: "Europe/Athens"
+    assignees:
+      - "nikosportolos"
+    reviewers:
+      - "nikosportolos"
