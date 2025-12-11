@@ -59,14 +59,12 @@ The `pub-credentials.json` will be generated in the default dart config folder i
 You can find it depending on your OS in the following directories:
 
 - On **Linux** _(see XDG specification)_
-
   - If `$XDG_CONFIG_HOME` is defined:
     - `$XDG_CONFIG_HOME/dart/pub-credentials.json`
   - else
     - `$HOME/.config/dart/pub-credentials.json`
 
 - On **MacOS** _(see [developer.apple.com](https://developer.apple.com))_
-
   - `~/Library/Application Support/dart/pub-credentials.json`
 
 - On **Windows**
