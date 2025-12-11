@@ -1,6 +1,4 @@
 version: 2
-enable-beta-ecosystems: true
-
 updates:
   - package-ecosystem: 'github-actions'
     directory: './'
@@ -11,5 +9,12 @@ updates:
       timezone: 'Europe/Athens'
     assignees:
       - 'nikosportolos'
-    reviewers:
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '00:00'
+      timezone: 'Europe/Athens'
+    assignees:
       - 'nikosportolos'
