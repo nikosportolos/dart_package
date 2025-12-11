@@ -1,3 +1,21 @@
+# v0.2.4
+
+#### Default values
+
+- Bump Flutter & Dart default SDKs to the latest ([#66](https://github.com/nikosportolos/dart_package/pull/66))
+
+#### Dependencies
+
+- Fix npm vulnerabilities ([#59](https://github.com/nikosportolos/dart_package/pull/59))
+- Update depandabot.yaml ([#60](https://github.com/nikosportolos/dart_package/pull/60))
+- Bump actions/setup-node from 4 to 6 ([#57](https://github.com/nikosportolos/dart_package/pull/57))
+- Bump actions/checkout from 4 to 6 ([#58](https://github.com/nikosportolos/dart_package/pull/58))
+- Bump @eslint/markdown from 6.6.0 to 7.5.1 ([#61](https://github.com/nikosportolos/dart_package/pull/61))
+- Bump prettier-plugin-sh from 0.14.0 to 0.18.0 ([#62](https://github.com/nikosportolos/dart_package/pull/62))
+- Bump globals from 15.13.0 to 16.5.0 ([#63](https://github.com/nikosportolos/dart_package/pull/63))
+- Bump prettier-plugin-packagejson from 2.5.6 to 2.5.20 ([#64](https://github.com/nikosportolos/dart_package/pull/64))
+- Bump prettier from 3.4.2 to 3.7.4 ([#65](https://github.com/nikosportolos/dart_package/pull/65))
+
 ## v0.2.3
 
 #### Default values
