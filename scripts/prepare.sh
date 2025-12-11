@@ -6,6 +6,11 @@ npm install
 echo
 
 echo
+echo 🦠 Checking for Vulnerabilities
+npm run audit
+echo
+
+echo
 echo 📝 Checking Code Formatting
 npm run format
 echo
