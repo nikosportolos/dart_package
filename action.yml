@@ -26,10 +26,6 @@ inputs:
     description: 'Specify the directories to run dart analyze.'
     required: false
     default: 'lib test'
-  line_length:
-    description: 'The line length to use with dart format.'
-    required: false
-    default: '120'
   concurrency:
     description: 'Controls the number of test suites that runs concurrently, meaning that multiple tests in independent suites or platforms can run at the same time.'
     required: false
@@ -97,7 +93,7 @@ runs:
       shell: bash
       run: |
         echo "🎨 Check Formatting"
-        dart format --output none --set-exit-if-changed -l ${{ inputs.line_length }} ${{ inputs.working_directory }}
+        dart format --output none --set-exit-if-changed ${{ inputs.working_directory }}
 
     - name: Analyze
       shell: bash
@@ -137,7 +133,7 @@ runs:
         echo "🚀 Publish on pub.dev"
         ${{ inputs.sdk }} pub global activate pana
         ${{ inputs.sdk }} pub publish --dry-run
-        pana --line-length ${{ inputs.line_length }} --exit-code-threshold ${{ inputs.pana_threshold }} ${{ inputs.working_directory }}
+        pana --exit-code-threshold ${{ inputs.pana_threshold }} ${{ inputs.working_directory }}
         mkdir -p ~/.config/dart
         echo "${{ inputs.pubdev_token }}" | base64 --decode >> ~/.config/dart/pub-credentials.json
         ${{ inputs.sdk }} pub publish --force

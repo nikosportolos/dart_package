@@ -29,7 +29,8 @@ publishing on [pub.dev](https://pub.dev), saving you time and effort.
 In order to upload Coverage reports to Codecov or/and to publish a package on [pub.dev](https://pub.dev)
 we need to set up the corresponding tokens as secrets in our GitHub repository.
 
-You can find [here](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
+You can
+find [here](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
 more information about secrets & environment variables.
 
 Your secrets in your GitHub repository should look like that:
@@ -91,7 +92,6 @@ Read more:
 | dart_sdk            | Specify the Dart SDK version that will be used. </br> This input will be ignored if `sdk` is set to `flutter`.                                                                                        | false    | "3.10.1"   |
 | flutter_sdk         | Specify the Flutter SDK version that will be used. </br> This input will be ignored if `sdk` is set to `dart`.                                                                                        | false    | "3.38.4"   |
 | analyze_directories | Specify the directories where [dart analyze](https://dart.dev/tools/dart-analyze) will run.                                                                                                           | false    | "lib test" |
-| line_length         | The line length to use with [dart format](https://dart.dev/tools/dart-format).                                                                                                                        | false    | "120"      |
 | concurrency         | Controls the number of test suites that runs [concurrently](https://pub.dev/packages/test#test-concurrency), meaning that multiple tests in independent suites or platforms can run at the same time. | false    | "4"        |
 | skip_tests          | Flag that defines whether to skip tests.                                                                                                                                                              | false    | "false"    |
 | coverage            | Flag that defines whether to run tests with [coverage](https://pub.dev/packages/test#collecting-code-coverage).                                                                                       | false    | "false"    |
@@ -103,7 +103,8 @@ Read more:
 
 ## Examples
 
-You can try the **dart_package** GitHub Action using the workflows in the [examples](https://github.com/nikosportolos/dart_package/tree/main/examples/workflows) folder.
+You can try the **dart_package** GitHub Action using the workflows in
+the [examples](https://github.com/nikosportolos/dart_package/tree/main/examples/workflows) folder.
 
 - ### Pull-request workflow
 
