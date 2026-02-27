@@ -130,7 +130,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
-      - uses: nikosportolos/dart_package@v0.2.4
+      - uses: nikosportolos/dart_package@v0.2.5
 ```
 
 - ### Merge workflow
@@ -158,7 +158,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
-      - uses: nikosportolos/dart_package@v0.2.4
+      - uses: nikosportolos/dart_package@v0.2.5
         with:
           coverage: true
           codecov: true
@@ -189,7 +189,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
-      - uses: nikosportolos/dart_package@v0.2.4
+      - uses: nikosportolos/dart_package@v0.2.5
         with:
           coverage: true
           codecov: true
@@ -222,7 +222,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
-      - uses: nikosportolos/dart_package@v0.2.4
+      - uses: nikosportolos/dart_package@v0.2.5
         sdK: flutter
         flutter-sdk: 3.41.2
 ```
