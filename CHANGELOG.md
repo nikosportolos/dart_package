@@ -1,3 +1,20 @@
+# v0.2.5
+
+#### Changes
+
+- Bump Flutter & Dart default SDKs to the latest ([#81](https://github.com/nikosportolos/dart_package/pull/81))
+- Remove deprecated "line-length" argument ([#73](https://github.com/nikosportolos/dart_package/pull/73))
+
+#### Dependencies
+
+- Bump prettier from 3.7.4 to 3.8.0 ([#72](https://github.com/nikosportolos/dart_package/pull/72))
+- Bump globals from 16.5.0 to 17.3.0 ([#74](https://github.com/nikosportolos/dart_package/pull/74))
+- Bump @eslint/js from 9.39.1 to 10.0.1 ([#75](https://github.com/nikosportolos/dart_package/pull/75))
+- Bump eslint from 9.39.1 to 10.0.2 ([#76](https://github.com/nikosportolos/dart_package/pull/76))
+- Bump prettier-plugin-packagejson from 2.5.20 to 3.0.0 ([#77](https://github.com/nikosportolos/dart_package/pull/77))
+- Bump @eslint/json from 0.14.0 to 1.0.1 ([#79](https://github.com/nikosportolos/dart_package/pull/79))
+- fix npm vulnerabilities
+
 # v0.2.4
 
 #### Default values
@@ -37,7 +54,8 @@
 #### Changes/Improvements
 
 - Cache Flutter SDK ([#34](https://github.com/nikosportolos/dart_package/issues/34))
-- Use major release tags instead of specific patch release tags ([#39](https://github.com/nikosportolos/dart_package/issues/39))
+- Use major release tags instead of specific patch release
+  tags ([#39](https://github.com/nikosportolos/dart_package/issues/39))
 
 #### Dependencies
 
@@ -75,7 +93,8 @@
 ## v0.0.6 (prerelease)
 
 - Bump default dart sdk version to 3.0.3 ([#9](https://github.com/nikosportolos/dart_package/issues/9))
-- Update README.md ([#1](https://github.com/nikosportolos/dart_package/issues/1), [#7](https://github.com/nikosportolos/dart_package/issues/7))
+- Update
+  README.md ([#1](https://github.com/nikosportolos/dart_package/issues/1), [#7](https://github.com/nikosportolos/dart_package/issues/7))
 - Add dependabot ([#3](https://github.com/nikosportolos/dart_package/issues/3))
 
 ## v0.0.5 (prerelease)
