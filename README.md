@@ -89,8 +89,8 @@ Read more:
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------- |
 | working_directory   | Specify the working directory where the workflow will run.                                                                                                                                            | false    | "."        |
 | sdk                 | Specify which SDK to use (dart, flutter).                                                                                                                                                             | false    | "dart"     |
-| dart_sdk            | Specify the Dart SDK version that will be used. </br> This input will be ignored if `sdk` is set to `flutter`.                                                                                        | false    | "3.10.1"   |
-| flutter_sdk         | Specify the Flutter SDK version that will be used. </br> This input will be ignored if `sdk` is set to `dart`.                                                                                        | false    | "3.38.4"   |
+| dart_sdk            | Specify the Dart SDK version that will be used. </br> This input will be ignored if `sdk` is set to `flutter`.                                                                                        | false    | "3.10.8"   |
+| flutter_sdk         | Specify the Flutter SDK version that will be used. </br> This input will be ignored if `sdk` is set to `dart`.                                                                                        | false    | "3.41.2"   |
 | analyze_directories | Specify the directories where [dart analyze](https://dart.dev/tools/dart-analyze) will run.                                                                                                           | false    | "lib test" |
 | concurrency         | Controls the number of test suites that runs [concurrently](https://pub.dev/packages/test#test-concurrency), meaning that multiple tests in independent suites or platforms can run at the same time. | false    | "4"        |
 | skip_tests          | Flag that defines whether to skip tests.                                                                                                                                                              | false    | "false"    |
@@ -224,7 +224,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: nikosportolos/dart_package@v0.2.4
         sdK: flutter
-        flutter-sdk: 3.22.3
+        flutter-sdk: 3.41.2
 ```
 
 ## Changelog
