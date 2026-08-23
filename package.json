@@ -28,7 +28,7 @@
     "@eslint/markdown": "^7.5.1",
     "eslint": "^10.0.2",
     "eslint-plugin-json-format": "^2.0.1",
-    "globals": "^17.4.0",
+    "globals": "^17.11.0",
     "prettier": "^3.8.1",
     "prettier-plugin-packagejson": "^3.0.0",
     "prettier-plugin-sh": "^0.18.0"
